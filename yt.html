@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTube — Pure Learning</title>
+    <link rel="stylesheet" href="yt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+
+    <header class="navbar">
+        <div class="nav-left">
+            <button id="sidebar-toggle" class="icon-btn"><i class="fa-solid fa-bars"></i></button>
+            <div class="logo" onclick="app.loadHome()">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span>
+                    <strong>Edu<span style="color: #ff4e45;">Tube</span></strong>
+                    <!-- Edu<span style="color: #ff4e45;">Tube</span> -->
+                </span>
+
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search calculus, quantum physics, biochemistry...">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div id="search-suggestions" class="suggestions-dropdown hidden"></div>
+        </div>
+
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme"><i class="fa-solid fa-sun"></i></button>
+            <button onclick="app.showBookmarks()" class="icon-btn" title="Saved Lectures"><i
+                    class="fa-solid fa-bookmark"></i></button>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <nav class="side-nav">
+                <a class="nav-item active" onclick="app.loadHome()"><i class="fa-solid fa-compass"></i> Discover</a>
+                <a class="nav-item" onclick="app.loadTrending()"><i class="fa-solid fa-fire"></i> Trending</a>
+                <a class="nav-item" onclick="app.showBookmarks()"><i class="fa-solid fa-bookmark"></i> Library</a>
+                <a class="nav-item" onclick="app.showHistory()"><i class="fa-solid fa-clock-rotate-left"></i>
+                    History</a>
+                <hr class="nav-divider">
+                <p class="nav-header">DISCIPLINES</p>
+                <a class="nav-item topic" onclick="app.search('Astrophysics lecture')"><i
+                        class="fa-solid fa-user-astronaut"></i> Astrophysics</a>
+                <a class="nav-item topic" onclick="app.search('Organic Chemistry university')"><i
+                        class="fa-solid fa-flask"></i> Chemistry</a>
+                <a class="nav-item topic" onclick="app.search('Computer Science Harvard CS50')"><i
+                        class="fa-solid fa-code"></i> Comp Sci</a>
+                <a class="nav-item topic" onclick="app.search('Linear Algebra MIT')"><i
+                        class="fa-solid fa-square-root-variable"></i> Mathematics</a>
+                <a class="nav-item topic" onclick="app.search('Neuroscience explained')"><i
+                        class="fa-solid fa-brain"></i> Neuroscience</a>
+                <a class="nav-item topic" onclick="app.search('Macroeconomics course')"><i
+                        class="fa-solid fa-chart-line"></i> Economics</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="category-strip" id="category-strip">
+                <button class="chip active" onclick="app.filterCategory('All', this)">All Topics</button>
+                <button class="chip" onclick="app.filterCategory('Artificial Intelligence course', this)">AI &
+                    ML</button>
+                <button class="chip" onclick="app.filterCategory('Biotechnology lecture', this)">Biotech</button>
+                <button class="chip" onclick="app.filterCategory('Quantum Physics documentary', this)">Physics</button>
+                <button class="chip" onclick="app.filterCategory('Calculus 3 tutorial', this)">Advanced Math</button>
+                <button class="chip" onclick="app.filterCategory('System Design interview', this)">Software Eng</button>
+                <button class="chip" onclick="app.filterCategory('Ancient History documentary', this)">History</button>
+            </div>
+
+            <div id="grid-view">
+                <h2 id="view-title" class="view-heading">Recommended for you</h2>
+                <div class="video-grid" id="video-grid"></div>
+                <div id="infinite-sentinel" class="sentinel">
+                    <div class="loader-circle hidden" id="scroll-loader"></div>
+                </div>
+            </div>
+
+            <div id="watch-view" class="watch-layout hidden">
+                <div class="primary-column">
+                    <div class="player-wrapper">
+                        <iframe id="video-iframe" src="" frameborder="0" allowfullscreen
+                            allow="autoplay; encrypted-media"></iframe>
+                    </div>
+                    <h1 id="watch-title" class="watch-title">Loading...</h1>
+                    <div class="watch-meta-bar">
+                        <div class="channel-info">
+                            <div class="avatar-holder"><i class="fa-solid fa-building-columns"></i></div>
+                            <div>
+                                <h3 id="watch-channel">Channel Name</h3>
+                                <span id="watch-date">Published date</span>
+                            </div>
+                        </div>
+                        <div class="watch-actions">
+                            <button id="save-btn" class="action-btn" onclick="app.toggleSaveCurrent()"><i
+                                    class="fa-regular fa-bookmark"></i> <span>Save</span></button>
+                            <button class="action-btn" onclick="app.shareVideo()"><i class="fa-solid fa-share"></i>
+                                Share</button>
+                        </div>
+                    </div>
+                    <div class="description-box">
+                        <p id="watch-views" class="view-count-bold"></p>
+                        <p id="watch-desc"></p>
+                    </div>
+                </div>
+                <div class="secondary-column">
+                    <h3>Related Lectures</h3>
+                    <div id="recommendation-list" class="recs-list"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="yt.js"></script>
+</body>
+
+</html>
