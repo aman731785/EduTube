@@ -3,7 +3,7 @@
  * Strict Educational Video Platform powered by YouTube Data API v3
  */
 
-//const API_KEY = "AIzaSyCiFTFJXaOYsp4iNj7cB1lqWAJWmQeXwVo"; // <--- PASTE YOUR KEY HERE
+const API_KEY = "AIzaSyCiFTFJXaOYsp4iNj7cB1lqWAJWmQeXwVo"; // <--- PASTE YOUR KEY HERE
 
 const SUBJECT_POOL = [
     "Quantum Physics lecture", "Organic Chemistry university course", "Calculus 3 MIT tutorial", 
